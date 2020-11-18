@@ -1,0 +1,27 @@
+<div class="row full-row-gray-components" *ngIf="total != 0; else nodata;">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12 col-sm-12">
+              <ctrysearchprjs [apiResponse]="apiResponse" [summaryrouting]="summaryrouting"  [locale]="locale" [buttonLink]="buttonLink" [projectDetailsPath]="projectDetailsPath" [ctryCode]="ctryCode" [sectorCode]="sectorCode" [regionName]="regionName" [mapPath]="mapPath">Loading..</ctrysearchprjs>
+          </div>
+      </div>
+      <div class="row">
+          <ctryoperations [locale]="locale" [apiResponse]="apiResponse" >Loading..</ctryoperations>
+          <ctrysectortheme [cType]="'sector'"  [locale]="locale" [apiResponse]="apiResponse" >Loading..</ctrysectortheme>
+          <ctrysectortheme [cType]="'themes'"  [locale]="locale" [apiResponse]="apiResponse" >Loading..</ctrysectortheme>
+      </div>
+  </div>
+</div> 
+<ng-template #nodata>
+  <div  class="row full-row-gray-components">
+      <div  class="container">
+         <div  class="row">
+         <div  class="col-md-12 col-sm-12">
+         <div class="_loop_card_header_main_footer">
+            Sorry, there are no results that match your search
+         </div>
+         </div>
+        </div>      
+       </div>
+    </div>
+</ng-template>

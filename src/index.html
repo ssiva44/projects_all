@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Allprojects</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://aemstg.worldbank.org/etc/designs/wbrrdesign/clientlibs-projects/css/style-min.css">
+   
+  <link rel="stylesheet" href="http://cq.extcc.com/projects-operations/english/css/style-min.css">
+  <link rel="stylesheet" href="http://cq.extcc.com/projects-operations/english/css/cq-extcc-min.css">
+  
+</head>
+<body >
+
+
+
+
+
+
+
+  <projectsall
+  
+  summary-project-api="//search.worldbank.org/api/v2/projects?format=json&fl=*" 
+  imagePath="./ajax.gif" 
+  projectCode="P174185" 
+  runmode="author" 
+  list-summary-routing="content/wb-home/en/projects-operations/projects-summary.html"
+  list-routing="content/wb-home/en/projects-operations/projects-list.html"
+  locale ="en"
+  summary-mapPath="https://mapsext.ocappsddev.worldbank.org/?"
+  
+  
+  procurement-domain="http://wb-stage62.adobecqms.net/" 
+
+
+  procurement-noticesApiUrl="//search.worldbank.org/api/v2/procnotices?format=json&fct=*&fl=*&os=&apilang=&qterm=&srt=submission_date%20desc,id%20asc" 
+  procurement-contractsApiUrl="//search.worldbank.org/api/contractdata?format=json&fct=regionname_exact,countryshortname_exact,procu_meth_text_exact,procu_type_text_exact,procurement_group_desc_exact,supplier_countryshortname_exact,mjsecname_exact,sector_exact&fl=id,projectid,project_name,contr_id,contr_desc,countryshortname,total_contr_amnt,procu_meth_text,procurement_group,contr_sgn_date,countryshortname_exact,supplier_contr_amount&fl=*&os=&qterm=&srt=contr_sgn_date%20desc,id%20asc" 
+  procurement-planApiUrl="//search.worldbank.org/api/v2/wds?format=json&fl=docna,docty,repnb,docdt,doc_authr,available_in&docty=Procurement+Plan&os=0"
+   
+  
+  document-projectsApiUrl="//search.worldbank.org/api/v2/wds?format=json&includepublicdocs=1&fl=docna,lang,docty,repnb,docdt,doc_authr,available_in" 
+  document-archivalApiUrl="//search.worldbank.org/api/v2/projectsarchives?format=json&srt=start_date&order=desc" 
+  
+  document-type="archival"
+
+  
+  newsmedia-news-media-api="//search.worldbank.org/api/v2/news?format=json&fct=displayconttype_exact&fl=descr,display_title,lang,url,lnchdt,proid,displayconttype&src=cq55"
+  newsmedia-multimedia-api="//search.worldbank.org/api/v2/multimedia?format=json&fl=*" 
+ 
+  
+
+  
+  
+  photo-projects-photo-gallery-api="https://search.worldbank.org/api/v2/photoarchives?format=json&fl=*&wbg_eligible_for_public_release=Yes&for_public_download=Yes&rows=15&srt=cataloged&order=desc" 
+  
+  
+  photo-details-path="https://archivesphotos.worldbank.org/en/about/archives/photo-gallery/photo-gallery-details" 
+  photo-viewall-label="View All Photos"
+  photo-viewall-link="https://aem-archivesphotos.worldbank.org/en/about/archives/photo-gallery/photo-gallery-landing"
+  
+  
+  list-project-list-api="//searchqa.worldbank.org/api/v2/projects?format=json&rows=20&fct=projectfinancialtype_exact,status_exact,regionname_exact,theme_exact,sector_exact,countryshortname_exact,cons_serv_reqd_ind_exact,esrc_ovrl_risk_rate_exact&fl=id,project_name,countryshortname,totalamt,status,boardapprovaldate,url,totalcommamt,proj_last_upd_date&" 
+  list-project-details-page="asfasf" 
+  list-excel-file="https://projects.worldbank.org/content/dam/documents/projects/all/all.xlsx"
+  list-download-excel="http://search.worldbank.org/api/projects/all.csv"
+
+  list-summary-apiUrl="http://searchqa.worldbank.org/api/v2/projects?format=json&fct=projectfinancialtype_exact,status_exact,countryshortname_exact,sector_exact,theme_exact,regionname_exact,fiscalyear&fl=id,status,project_name,countryshortname,boardapprovaldate,totalcommamt_srt,countrycode,regionname&statsfield=totalamt,totalcommamt_srt&statsfacet=countryshortname_exact^regionname_exact^fiscalyear&rows=6&os=0&srt=boardapprovaldate&order=desc" 
+  list-summary-buttonLink="" 
+  list-summary-projectDetailsPath=""
+  list-summary-mapPath="https://mapsext.ocappsddev.worldbank.org/?"
+  list-summary-ctryCode="" 
+  list-summary-sectorCode="" 
+  list-summary-regionName="Africa"
+
+  summary-routing="content/wb-home/en/projects-operations/projectdetail-spa"
+procurement-routing="content/wb-home/en/projects-operations/project-procurement"
+document-routing="content/wb-home/en/projects-operations/document-detail"
+newsmedia-routing="content/wb-home/en/projects-operations/news-media"
+photogallery-routing="content/wb-home/en/projects-operations/photo-gallery"
+projectlist-routing="content/wb-home/en/projects-operations/projects-list"
+projectlistsummary-routing="content/wb-home/en/projects-operations/projects-summary"
+
+domain-en="http://localhost:4200/"
+domain-es="http://localhost:4200/"
+domain-pt="http://localhost:4200/"
+domain-zh="http://localhost:4200/"
+domain-ru="http://localhost:4200/"
+domain-ar="http://localhost:4200/"
+domain-fr="http://localhost:4200/"
+  
+  ></projectsall>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+</body>
+</html>

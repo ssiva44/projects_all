@@ -1,0 +1,53 @@
+<div class="col-md-6" *ngIf="isResponse">
+  <div class="_loop_card_header_main_footer"> 
+      <div class="_loop_card_header">
+          <h3>{{themesTitle}}</h3>
+      </div>
+
+      <!-- Loop Card Main Section -->
+      <div class="_loop_card_main_section">
+          <div *ngIf="isTheme" class="card-main-section">
+             <!-- Accrodion -->
+              <div class="table-group" id="accordion-theme" *ngFor="let themeVal of themeArr">
+                <!-- Accordion Wrapper -->
+                      <div class="table-accordion-wrapper ta-block" *ngFor="let themeList of themeVal;let i = index">
+
+                              <!-- Title -->
+                              <div  data-toggle="collapse" data-parent="#accordion" class="table-accordion-btn"  [attr.href]="'#collapse' + i" aria-expanded="false">
+                                <span>{{themeList.name}}</span>
+                              </div>
+                              <!-- Title Ends-->
+
+                              <!-- Collapse Title Data -->
+                              <div [attr.id]="'collapse' + i" class="collapse" aria-expanded="false">
+                                <div class="table-accordion-content">
+                                    <div class="theme-panel">
+                                      <ul class="twolevel">
+                                          <li class="firstlevel" *ngFor="let theme2List of themeList['theme2']">
+                                              <span class="proj-theme" >{{theme2List.name}}</span>
+                                              <span class="proj-theme-percentage">{{theme2List.percent + "%"}}</span>
+                                              <ul class="secondlevel"> 
+                                                  <li *ngFor="let theme3List of theme2List['theme3']">
+                                                    <span class="proj-theme" >{{theme3List.name}}</span>
+                                                     <span class="proj-theme-percentage">{{theme3List.percent + "%"}}</span>
+                                                  </li>
+                                               </ul>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                                                      
+                            <!-- Collapse Title Data Ends-->
+                   
+                    </div>
+                    <!-- Accordion Wrapper Ends-->
+
+              </div>
+              <!-- Accrodion Ends-->
+
+          </div>
+          <div *ngIf="!isTheme">{{noData}}</div>  
+      </div>
+      <!-- Loop Card Main Section Ends-->

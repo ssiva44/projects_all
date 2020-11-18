@@ -1,0 +1,55 @@
+<!-- Begin Project List -->
+<div class="row full-row-white-components">
+  <div class="container">
+     <div class="row">
+        <!-- Begin Project List table -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+           <!-- Begin Project Listing -->
+           <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <section class="tab-set">
+                  <ul class="nav nav-tabs">
+                    <li (click)="tab($event,'projects')">
+                       <a id="projects" class="menu-active btn" >
+                        {{projectsLabel}}
+                        </a>
+                    </li>
+                    <li (click)="tab($event,'archival')">
+                        <a id="archival" class="btn" >
+                           {{archivalLabel}} 
+                          </a>
+                    </li>
+                  </ul>
+                </section>
+                 <section>	
+                  <!-- [tabType]="tabType"						  -->
+                  
+        <!-- <tabset >  -->
+          <!-- <projects-tab title="{{projectsLabel}}"> -->
+             <div *ngIf="!projects">
+               <table-api [imagePath]="imagePath" [tableHeaders]= "archivalTableHeaders" [locale]="locale" 
+               [apiUrl]="archivalApiUrl"  [inputApiUrl]="archivalApiUrl" [loadMoreLabel]="loadMoreLabel"
+                [errorMsg]="archivalErrorMessage" tabType="archival" [downloadLabel]="downloadLabel" 
+                [projectid]="projectid"> Loading...</table-api>
+         </div>
+         <div *ngIf="!archive">
+          <!-- </projects-tab>
+          <projects-tab title="{{archivalLabel}}"> -->
+            <table-api [imagePath]="imagePath" [tableHeaders]= "projectsTableHeaders" 
+            [locale]="locale" [apiUrl]="projectsApiUrl"  [inputApiUrl]="projectsApiUrl" 
+            [loadMoreLabel]="loadMoreLabel" [errorMsg]="projectsErrorMessage" tabType="projects" 
+            [downloadLabel]="downloadLabel" [projectid]="projectid"> Loading...</table-api>
+           
+         </div>
+            <!-- </projects-tab> -->
+        <!-- </tabset> -->
+                 </section>
+              </div>
+           </div>
+           <!-- End Project Listing -->
+        </div>
+        <!-- Begin Project List table -->
+     </div>
+  </div>
+</div>
+<!-- End Project List -->

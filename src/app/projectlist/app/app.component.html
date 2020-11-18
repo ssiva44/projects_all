@@ -1,0 +1,16 @@
+<div class="row full-row-white-components">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-xs-12">
+        <div class="ajax-div" *ngIf="loading">    
+          <img src="{{imagePath}}" class="ajax-loader" alt="Loading"/>
+        </div>
+        <projects-list [locale]="locale" [projectsApi]="projectsApi" 
+        [downloadExcelFile]="downloadExcelFile" [summaryrouting]="summaryrouting" 
+        [listrouting]="listrouting" [projectDetailsPage]="projectDetailsPage" 
+        (updateLoader)="updateLoader($event)" [excelFile]="excelFile"></projects-list>        
+      </div>
+    </div>
+  </div>
+  
+</div>

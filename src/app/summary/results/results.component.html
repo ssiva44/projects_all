@@ -1,0 +1,291 @@
+<section id="results">
+    <div class="row full-row-white-components" style="padding: 32px 0px 32px 0px;">
+    <div class="container">
+    
+       <div class="row">
+        <div class="heading-v1">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+           <h2>{{resultsLabel}}</h2>
+    
+            <h3 *ngIf="isResults">{{projindicatorlabel}}</h3>
+            <a *ngIf="isResults" href="#" class="btn btn-sm btn-default primary-gray-btn view-all-btn">
+            {{resultsLinkLabel}}<i class="icon-angle-right"> <span class="sr-only">Arrow</span></i>
+             </a>
+         </div>
+       </div>
+                </div>
+        <div class="row" *ngIf="isResults">
+            <div class="Results_section" *ngIf="isResponse">
+                <div class="col-md-12 col-xs-12 ">
+                    <div class="c14v1-body c14v1-body-text table-column-sort">
+                        <div  class="paragraph table nosort">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <th>{{indicatorlabel}}</th>
+                                        <th></th>
+                                        <th>{{baselinelabel}}</th>
+                                        <th>{{currentlabel}}</th>
+                                        <th>{{targetlabel}}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <ul>
+                                <li *ngFor="let parentArr of finalArr; let i = index" >
+                                     
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" *ngIf="parentArr.parentIndicatorType =='PD' && parentArr.parentIndicatorIndex === 0">
+                                     
+                                        <tbody>
+                                            <tr>
+                                                <td [attr.data-th] class="rowspan" rowspan="3">{{parentArr.parentIndicatorName}}</td>
+                                                <td [attr.data-th]>{{valuelabel}}</td>
+                                                <td [attr.data-th]="baselinelabel+':'">{{parentArr.baselineArr.VALUE}}</td>
+                                                <td [attr.data-th]="currentlabel+':'">{{parentArr.currentArr.VALUE}}</td>
+                                                <td [attr.data-th]="targetlabel+':'">{{parentArr.targetArr.VALUE}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td [attr.data-th]>{{datelabel}}</td>
+                                                <td [attr.data-th]="baselinelabel+':'">{{parentArr.baselineArr.Date}}</td>
+                                                <td [attr.data-th]="currentlabel+':'">{{parentArr.currentArr.Date}}</td>
+                                                <td [attr.data-th]="targetlabel+':'">{{parentArr.targetArr.Date}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td [attr.data-th]>{{commentlabel}}</td>
+                                                <td [attr.data-th]>{{parentArr.baselineArr.Comments}}</td>
+                                                <td [attr.data-th]>{{parentArr.currentArr.Comments}}</td>
+                                                <td [attr.data-th]>{{parentArr.targetArr.Comments}}</td>
+                                               
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" [@fadeInOutPD]="fadeInOutPD" *ngIf="parentArr.parentIndicatorType =='PD' && parentArr.parentIndicatorIndex !== 0">
+                                        
+                                        <tbody>
+                                            <tr>
+                                                <td [attr.data-th] class="rowspan" rowspan="3">{{parentArr.parentIndicatorName}}</td>
+                                                <td [attr.data-th]>{{valuelabel}}</td>
+                                                <td [attr.data-th]="baselinelabel+':'">{{parentArr.baselineArr.VALUE}}</td>
+                                                <td [attr.data-th]="currentlabel+':'">{{parentArr.currentArr.VALUE}}</td>
+                                                <td [attr.data-th]="targetlabel+':'">{{parentArr.targetArr.VALUE}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td [attr.data-th]>{{datelabel}}</td>
+                                                <td [attr.data-th]="baselinelabel+':'">{{parentArr.baselineArr.Date}}</td>
+                                                <td [attr.data-th]="currentlabel+':'">{{parentArr.currentArr.Date}}</td>
+                                                <td [attr.data-th]="targetlabel+':'">{{parentArr.targetArr.Date}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td [attr.data-th]>{{commentlabel}}</td>
+                                                <td [attr.data-th]>{{parentArr.baselineArr.Comments}}</td>
+                                                <td [attr.data-th]>{{parentArr.currentArr.Comments}}</td>
+                                                <td [attr.data-th]>{{parentArr.targetArr.Comments}}</td>
+                                               
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <ul class="subtable" *ngIf="parentArr.hasOwnProperty('childIndicatorArr')"> 
+                                          
+                                        <li *ngFor="let childArr of parentArr.childIndicatorArr" >
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" *ngIf="childArr.c_indicatorType =='PD' && parentArr.parentIndicatorIndex === 0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td [attr.data-th] class="subrowspan" rowspan="3">{{childArr.c_indicatorName}}</td>
+                                                                <td [attr.data-th]>{{valuelabel}}</td>
+                                                                <td [attr.data-th]="baselinelabel+':'">{{childArr.c_baselineArr.VALUE}}</td>
+                                                                <td [attr.data-th]="currentlabel+':'">{{childArr.c_currentArr.VALUE}}</td>
+                                                                <td [attr.data-th]="targetlabel+':'">{{childArr.c_targetArr.VALUE}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td [attr.data-th]>{{datelabel}}</td>
+                                                                <td [attr.data-th]="baselinelabel+':'">{{childArr.c_baselineArr.Date}}</td>
+                                                                <td [attr.data-th]="currentlabel+':'">{{childArr.c_currentArr.Date}}</td>
+                                                                <td [attr.data-th]="targetlabel+':'">{{childArr.c_targetArr.Date}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td [attr.data-th]>{{commentlabel}}</td>
+                                                                <td [attr.data-th]>{{childArr.c_baselineArr.Comments}}</td>
+                                                                <td [attr.data-th]>{{childArr.c_currentArr.Comments}}</td>
+                                                                <td [attr.data-th]>{{childArr.c_targetArr.Comments}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                             
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" [@fadeInOutPD]="fadeInOutPD" *ngIf="childArr.c_indicatorType =='PD' && parentArr.parentIndicatorIndex !== 0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td [attr.data-th] class="subrowspan" rowspan="3">{{childArr.c_indicatorName}}</td>
+                                                        <td [attr.data-th]>{{valuelabel}}</td>
+                                                        <td [attr.data-th]="baselinelabel+':'">{{childArr.c_baselineArr.VALUE}}</td>
+                                                        <td [attr.data-th]="currentlabel+':'">{{childArr.c_currentArr.VALUE}}</td>
+                                                        <td [attr.data-th]="targetlabel+':'">{{childArr.c_targetArr.VALUE}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td [attr.data-th]>{{datelabel}}</td>
+                                                        <td [attr.data-th]="baselinelabel+':'">{{childArr.c_baselineArr.Date}}</td>
+                                                        <td [attr.data-th]="currentlabel+':'">{{childArr.c_currentArr.Date}}</td>
+                                                        <td [attr.data-th]="targetlabel+':'">{{childArr.c_targetArr.Date}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td [attr.data-th]>{{commentlabel}}</td>
+                                                        <td [attr.data-th]>{{childArr.c_baselineArr.Comments}}</td>
+                                                        <td [attr.data-th]>{{childArr.c_currentArr.Comments}}</td>
+                                                        <td [attr.data-th]>{{childArr.c_targetArr.Comments}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </li>
+                                    </ul>
+                                    </li>
+                            </ul>
+                        </div>
+    
+                        
+                    </div>
+                </div>
+                <!-- begin expand -->
+                <div class="col-md-12 col-xs-12">
+                        <div class="collapse-data"> 
+                            <a (click)="onLoadMore(!isCollapsePD,'PD')"><i [ngClass]="showMoreOrLessIconPD"></i></a>                             
+                        </div>                        
+                </div>    
+                <!-- end expand -->
+                
+                <div class="col-md-12 col-xs-12 ">
+                    <div class="table-heading">
+                        <h4>{{intermediateindicatorlabel}}</h4>
+                    </div>
+                    <div class="c14v1-body c14v1-body-text table-column-sort">
+                        <div class="paragraph table nosort">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <th>{{indicatorlabel}}</th>
+                                        <th></th>
+                                        <th>{{baselinelabel}}</th>
+                                        <th>{{currentlabel}}</th>
+                                        <th>{{targetlabel}}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <ul>
+                                <li *ngFor="let parentArr of finalArr" >
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" *ngIf="parentArr.parentIndicatorType =='IO' && parentArr.parentIndicatorIndex === 0">
+                                        <tbody>
+                                            <tr>
+                                                <td [attr.data-th] class="rowspan" rowspan="3">{{parentArr.parentIndicatorName}}</td>
+                                                <td [attr.data-th]>{{valuelabel}}</td>
+                                                <td [attr.data-th]="baselinelabel+':'">{{parentArr.baselineArr.VALUE}}</td>
+                                                <td [attr.data-th]="currentlabel+':'">{{parentArr.currentArr.VALUE}}</td>
+                                                <td [attr.data-th]="targetlabel+':'">{{parentArr.targetArr.VALUE}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td [attr.data-th]>{{datelabel}}</td>
+                                                <td [attr.data-th]="baselinelabel+':'">{{parentArr.baselineArr.Date}}</td>
+                                                <td [attr.data-th]="currentlabel+':'">{{parentArr.currentArr.Date}}</td>
+                                                <td [attr.data-th]="targetlabel+':'">{{parentArr.targetArr.Date}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td [attr.data-th]>{{commentlabel}}</td>
+                                                <td [attr.data-th]>{{parentArr.baselineArr.Comments}}</td>
+                                                <td [attr.data-th]>{{parentArr.currentArr.Comments}}</td>
+                                                <td [attr.data-th]>{{parentArr.targetArr.Comments}}</td>
+                                               
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" [@fadeInOutIO]="fadeInOutIO" *ngIf="parentArr.parentIndicatorType =='IO' && parentArr.parentIndicatorIndex !== 0">
+                                            <tbody>
+                                                <tr>
+                                                    <td [attr.data-th] class="rowspan" rowspan="3">{{parentArr.parentIndicatorName}}</td>
+                                                    <td [attr.data-th]>{{valuelabel}}</td>
+                                                    <td [attr.data-th]="baselinelabel+':'">{{parentArr.baselineArr.VALUE}}</td>
+                                                    <td [attr.data-th]="currentlabel+':'">{{parentArr.currentArr.VALUE}}</td>
+                                                    <td [attr.data-th]="targetlabel+':'">{{parentArr.targetArr.VALUE}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td [attr.data-th]>{{datelabel}}</td>
+                                                    <td [attr.data-th]="baselinelabel+':'">{{parentArr.baselineArr.Date}}</td>
+                                                    <td [attr.data-th]="currentlabel+':'">{{parentArr.currentArr.Date}}</td>
+                                                    <td [attr.data-th]="targetlabel+':'">{{parentArr.targetArr.Date}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td [attr.data-th]>{{commentlabel}}</td>
+                                                    <td [attr.data-th]>{{parentArr.baselineArr.Comments}}</td>
+                                                    <td [attr.data-th]>{{parentArr.currentArr.Comments}}</td>
+                                                    <td [attr.data-th]>{{parentArr.targetArr.Comments}}</td>
+                                                   
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    <ul class="subtable" *ngIf="parentArr.hasOwnProperty('childIndicatorArr')"> 
+                                          
+                                        <li *ngFor="let childArr of parentArr.childIndicatorArr" >
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" *ngIf="childArr.c_indicatorType =='IO' && parentArr.parentIndicatorIndex === 0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td [attr.data-th] class="subrowspan" rowspan="3">{{childArr.c_indicatorName}}</td>
+                                                                <td [attr.data-th]>Value</td>
+                                                                <td [attr.data-th]="baselinelabel+':'">{{childArr.c_baselineArr.VALUE}}</td>
+                                                                <td [attr.data-th]="currentlabel+':'">{{childArr.c_currentArr.VALUE}}</td>
+                                                                <td [attr.data-th]="targetlabel+':'">{{childArr.c_targetArr.VALUE}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td [attr.data-th]>Date</td>
+                                                                <td [attr.data-th]="baselinelabel+':'">{{childArr.c_baselineArr.Date}}</td>
+                                                                <td [attr.data-th]="currentlabel+':'">{{childArr.c_currentArr.Date}}</td>
+                                                                <td [attr.data-th]="targetlabel+':'">{{childArr.c_targetArr.Date}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td [attr.data-th]>Comment</td>
+                                                                <td [attr.data-th]>{{childArr.c_baselineArr.Comments}}</td>
+                                                                <td [attr.data-th]>{{childArr.c_currentArr.Comments}}</td>
+                                                                <td [attr.data-th]>{{childArr.c_targetArr.Comments}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                             
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" [@fadeInOutIO]="fadeInOutIO" *ngIf="childArr.c_indicatorType =='IO' && parentArr.parentIndicatorIndex !== 0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td [attr.data-th] class="subrowspan" rowspan="3">{{childArr.c_indicatorName}}</td>
+                                                        <td [attr.data-th]>Value</td>
+                                                        <td [attr.data-th]="baselinelabel+':'">{{childArr.c_baselineArr.VALUE}}</td>
+                                                        <td [attr.data-th]="currentlabel+':'">{{childArr.c_currentArr.VALUE}}</td>
+                                                        <td [attr.data-th]="targetlabel+':'">{{childArr.c_targetArr.VALUE}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td [attr.data-th]>Date</td>
+                                                        <td [attr.data-th]="baselinelabel+':'">{{childArr.c_baselineArr.Date}}</td>
+                                                        <td [attr.data-th]="currentlabel+':'">{{childArr.c_currentArr.Date}}</td>
+                                                        <td [attr.data-th]="targetlabel+':'">{{childArr.c_targetArr.Date}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td [attr.data-th]>Comment</td>
+                                                        <td [attr.data-th]>{{childArr.c_baselineArr.Comments}}</td>
+                                                        <td [attr.data-th]>{{childArr.c_currentArr.Comments}}</td>
+                                                        <td [attr.data-th]>{{childArr.c_targetArr.Comments}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </li>
+                                    </ul>
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- begin expand -->
+                <div class="col-md-12 col-xs-12">
+                        <div class="collapse-data"> 
+                            <a (click)="onLoadMore(!isCollapseIO, 'IO')"><i [ngClass]="showMoreOrLessIconIO"></i></a>                             
+                        </div>                        
+                    </div>    
+                <!-- end expand -->
+            </div>
+        </div>
+        <div class="paragraph table nosort"  *ngIf="!isResults">
+            {{resultsErrorMessage}}
+         </div>
+        </div>
+        </div>
+        </section>

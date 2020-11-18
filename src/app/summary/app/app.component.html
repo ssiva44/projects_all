@@ -1,0 +1,72 @@
+
+<div class="project_par parsys">
+  <div class="details_tab parbase section">
+  <div class="row full-row-black-components hidden-sm hidden-xs" style="padding: 0px;"  id="subnav_section" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          
+            <main class="subnav_main_section"  >
+              <div class="content _loop_page_subnav"  >
+                <nav id="wrap1" >
+                    <ul class="_loop_page_subnav_list _loop_page_subnav_list_v1">
+                      <li class="_loop_subnav_list_item" (click)="scroll('abstract',$event)">
+                        <a id="abstracttopmenu" class="page-scroll active" role="button">{{abstract}}<span class=" subnav_direction_arrow hidden-xs"><i class="fa fa-chevron-down" aria-hidden="true"></i></span></a></li> 
+                      
+                      <li class="_loop_subnav_list_item" (click)="scroll('key-details',$event)">
+                        <a id="key-detailstopmenu"  class="page-scroll" role="button">{{keyDetails}}<span class=" subnav_direction_arrow hidden-xs"><i class="fa fa-chevron-down" aria-hidden="true"></i></span></a></li> 
+  
+                      
+                      <li class="_loop_subnav_list_item" (click)="scroll('finances',$event)">
+                        <a id="financestopmenu" class="page-scroll" role="button">{{finances}}<span class=" subnav_direction_arrow hidden-xs"><i class="fa fa-chevron-down" aria-hidden="true"></i></span></a></li> 
+  
+                      
+                      <li class="_loop_subnav_list_item" (click)="scroll('ratings',$event)"><a id="ratingstopmenu"  class="page-scroll" role="button">{{ratings}}<span class=" subnav_direction_arrow hidden-xs"><i class="fa fa-chevron-down" aria-hidden="true"></i></span></a></li> 
+  
+                      
+                      <li class="_loop_subnav_list_item" (click)="scroll('results',$event)"><a id="resultstopmenu"  class="page-scroll" role="button">{{results}}<span class=" subnav_direction_arrow hidden-xs"><i class="fa fa-chevron-down" aria-hidden="true"></i></span></a></li> 
+  
+                      
+                  </ul>
+                  
+                  
+                  
+  
+                </nav>
+              </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+<div class="ajax-div" *ngIf="loading">    
+  <img src="{{imagePath}}" class="ajax-loader" alt="Loading"/>
+</div>
+
+<abstract-details [projectCode]="projectCode" [locale]="locale" [apiResponse]="apiResponse"></abstract-details>
+
+<div class="row full-row-gray-components" style="padding: 16px 0px 16px 0px;">
+  <div class="container">            
+      <div class="row">
+          <sector-section [projectCode]="projectCode" [locale]="locale" [apiResponse]="apiResponse"></sector-section>    
+          <theme-section [projectCode]="projectCode" [locale]="locale" [apiResponse]="apiResponse"></theme-section> 
+      </div>     
+  </div>
+</div>
+
+<finances [projectCode]="projectCode" [locale]="locale" [apiResponse]="apiResponse"></finances>
+
+<ratings [projectCode]="projectCode" [locale]="locale" [apiResponse]="apiResponse"></ratings>
+
+<results [projectCode]="projectCode" [locale]="locale" [apiResponse]="apiResponse"></results>
+

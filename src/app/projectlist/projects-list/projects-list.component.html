@@ -1,0 +1,181 @@
+
+<div class="row">
+  <div class="col-lg-3 col-md-3 col-xs-12 hidden-sm hidden-xs" [ngClass]="{'left-section': isFacetsCollapsed}">
+      <div id="wrapper" [ngClass]="{'toggled-2': isFacetsCollapsed}">
+          <button class="sidebar-toggle" (click)="updateFacetsCollapsed(!isFacetsCollapsed)"> 
+              <i class="sidebar-arrow" [ngClass]="sideBarArrow"></i>
+          </button> 
+          <div id="sidebar-wrapper">
+              <div class="sidebar-heading">
+                  <i class="fa fa-list-ul"></i>
+                  <h4 class="h4">{{filter}}</h4>
+
+                  <projects-timeframe #projectsTimeframe [locale]="locale" (updatedTimeframe)="updateTimeframe($event)" (timeFramesOut)="projectsMobileFacets.getTimeframes($event)" (selectedTimeframeOut)="projectsMobileFacets.getSelectedTimeframe($event)"></projects-timeframe>
+
+                  <projects-date #projectsDate [locale]="locale" (updatedDates)="updateDates($event)" 
+                  (selectedDateRange)="projectsMobileFacets.onSeletedDates($event.startDate, $event.endDate)"></projects-date>
+
+                  <projects-facets #projectsFacet [locale]="locale" [facetsIn]="facets" 
+                  (updatedFacets)="updateFacets($event)" 
+                   (selectedFacetsOut)="projectsMobileFacets.getSelectedFacets($event)"></projects-facets>
+              </div>
+          </div>                           
+      </div>                        
+  </div>
+  <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" [ngClass]="{'right-section': isFacetsCollapsed}">
+      <!-- <div class="row">
+          <div class="heading-v1">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <h2>{{projectTitle}}</h2>
+              </div>
+          </div>
+      </div> -->
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" [class.hide]="!isProjects">
+              <div class="table-heading">
+                  <h4></h4>
+                  <p class="blurb-text">{{showingDetails}}</p>
+                  <div class="accordion-group-btn">
+                      <span class="blurb-text">{{download}}: </span>                                
+                      <a *ngIf="downloadAll" data-customlink="fd:body content:en:pdf" 
+                      href="{{downloadExcelFile}}" class="accordion-download" data-type="word" 
+                      title="Download Excel"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></a>
+                      <a *ngIf="!downloadAll" data-customlink="fd:body content:en:pdf" (click)="onDownloadExcel(); false" class="accordion-download" data-type="word" title="Download Excel"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></a>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
+              <div class="sidebar-nav-mobile hidden-lg hidden-md" (click)="isCollapsed=!isCollapsed">
+                  <div class="sidebar-heading">
+                      <span data-target="#refine-collapse1" data-toggle="collapse" type="button" class="dropdown-toggle" aria-expanded="true">
+                      <h4 class="h4">{{refineBy}}<i class="fa fa-angle-down arrow-down"></i></h4>
+                      </span>
+                  </div>
+              </div>
+          </div>
+                      
+          <projects-mobilefacets #projectsMobileFacets [isCollapsed]="isCollapsed" [locale]="locale" [facetsIn]="facets" (isCollapsedOut)="updateIsCollapsed($event)" (selectedTimeframe)="projectsTimeframe.onSelectTimeFrame($event)" (selectedDateRange)="projectsDate.onSelectedDate($event.startDate, $event.endDate)" (selectedFacet)="projectsFacet.onFacetItem($event.facet, $event.itemName)"></projects-mobilefacets>
+      </div>   
+      <div class="row" [ngClass]="{'display-none': !isModal }">
+                  
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+          
+
+          <div id="myModal" class="modal_1">
+
+              <!-- Modal content -->
+              <div class="modal-content">
+                 
+                  <div class="panel-group">
+                      <div class="panel panel-primary">
+                        <div class="panel-heading">Range
+                          <span class="close" (click)="closeModal()">&times;</span>
+                        </div>
+                        <div class="panel-body">
+                          <div class="row">
+          
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <!-- <ng5-slider [(ngModel)]="rangeValue1" [(value)]="value"  
+                          [manualRefresh]="manualRefresh" [options]="options"> -->
+                             
+                          <!-- </ng5-slider> -->
+                          <ng5-slider [(ngModel)]="rangeValue2"  [(value)]="value1"  [manualRefresh]="manualRefresh" [options]="options1"></ng5-slider>
+                        </div>
+                       </div>
+
+                       <div class="row">
+                          <div class="col-lg-10 col-md-10 col-sm-11 col-xs-11" >
+                             
+                             <span >
+                              You are downloading {{rangeValue2}} to 
+                              {{rangeValue2+500}}  records.
+                              </span> 
+                              <!-- <span *ngIf="options.ceil!=rangeValue1 && options1.ceil!=rangeValue2">
+                                  You are downloading {{rangeValue1+rangeValue2}} to 
+                                  {{rangeValue1+rangeValue2+500}}  records.
+                               </span> 
+                              <span *ngIf="(options.ceil==rangeValue1 && options1.ceil!=rangeValue2)||options.ceil!=rangeValue1 && options1.ceil==rangeValue2">
+                                  You are downloading {{rangeValue1-10000+rangeValue2-500}} to 
+                                  {{rangeValue1-10000+rangeValue2}}  records.
+                               </span>  -->
+                          </div>
+                          <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                          <button type="button" class="btn btn-primary" (click)="onSubmitModal()">Ok</button>
+                      </div>
+                       </div>
+                        </div>
+
+                      </div>
+                  </div>
+                  
+              </div>
+            
+            </div>
+      </div>
+  </div>
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="sorting-section visible-xs">
+                  <div class="sorting-label">{{sortByLabel}}: </div>
+                  <ul class="sorting-list">                       
+                      <li [ngClass]="{'active-sortable': sortBy == projectHeadersProperties[i]}" (click)="onSort(projectHeadersProperties[i], sortType)" *ngFor="let header of projectHeaders; let i = index"><a data-customlink="ss:header">{{header}}</a></li>                    
+                  </ul>            
+              </div>
+              <div class="c14v1-body c14v1-body-text responsive-table project-opt-table">
+                  <div *ngIf="!isProjects" style="font-weight: 600;" [innerHTML]="noData"></div>
+                  <div class="paragraph table-sort sorter">                        
+                      <table class="row-border hover responsive project-operation-tab-table" [class.hide]="!isProjects">   
+                          <thead>
+                              <tr>
+                                  <th data-customlink="ss:header" (click)="onSort(projectHeadersProperties[i], sortType)" *ngFor="let header of projectHeaders; let i = index">{{header}}</th>
+                              </tr>
+                          </thead>                 
+                          <tbody>  
+                            <!-- href="{{projectDetailsPage}}{{project.projectId}}"                               -->
+                              <tr *ngFor="let project of projects">
+                                  <td [attr.data-th]=""><a class="project-list-link" (click)="goToDetail(project.projectId)" >{{project.projectName}}</a></td>
+                                  <td [attr.data-th]="projectHeaders[1] + ':'">{{project.country}}</td>
+                                  <td [attr.data-th]="projectHeaders[2] + ':'">{{project.projectId}}</td>
+                                  <td [attr.data-th]="projectHeaders[3] + ':'">{{project.commitmentAmount}}</td>
+                                  <td [attr.data-th]="projectHeaders[4] + ':'">{{project.status}}</td>
+                                  <td [attr.data-th]="projectHeaders[5] + ':'">{{project.approvalDate}}</td> 
+                                  <td [attr.data-th]="projectHeaders[6] + ':'">{{project.projlastupddate}}</td>
+                              </tr>   
+                          </tbody>                   
+                      </table>
+                  </div>
+              </div>              
+          </div>
+      </div>                              
+  
+      <div class="row" [class.hide]="!isProjects">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <ul *ngIf="pager.pages && pager.pages.length" class="pagination" style="cursor: pointer">
+                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                      <a data-customlink="sp:footer" (click)="setPage(1)"><i [class]="leftArrow" aria-hidden="true"></i><i [class]="leftArrow" aria-hidden="true"></i></a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                      <a data-customlink="sp:footer" (click)="setPage(pager.currentPage - 1)"><i [class]="leftArrow" aria-hidden="true"></i></a>
+                  </li>
+                  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                      <a data-customlink="sp:footer" (click)="setPage(page)">{{page}}</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                      <a data-customlink="sp:footer" (click)="setPage(pager.currentPage + 1)"><i [class]="rightArrow" aria-hidden="true"></i></a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                      <a data-customlink="sp:footer" (click)="setPage(pager.totalPages)"><i [class]="rightArrow" aria-hidden="true"></i><i [class]="rightArrow" aria-hidden="true"></i></a>
+                  </li>
+              </ul>
+              <!-- <div id="loadMore1" *ngIf="isLoadMore">
+                  <a (click)="loadMore(); false" class="btn-default btn-lg _loop_btn_secondary">Load more</a>
+              </div> -->
+              
+              <!-- <div class="totop" *ngIf="isScrollToTop" [@fadeInOut]> 
+                  <a id="totop" (click)="onScrollToTop(); false">Back to top</a> 
+              </div> -->
+          </div>
+      </div>
+  </div>
+</div>                                      

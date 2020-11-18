@@ -1,0 +1,18 @@
+<div class="col-md-6 col-sm-12" *ngIf="isResponse">
+  <div class="_loop_card_header_main_footer">
+      <div class="_loop_card_header">
+          <h3>{{sectorThemeTit}}</h3>
+      </div>
+      <div class="_loop_card_main_section">
+          <div class="card-main-section">
+          <div class="row">
+          
+              <chart [options]="options"></chart>        
+              <ng-template #elseBlock>
+              <h3>No Data</h3>
+              </ng-template>
+          </div>
+          </div>
+      </div>
+  </div>
+</div>

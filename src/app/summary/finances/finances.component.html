@@ -1,0 +1,175 @@
+<section id="finances"  *ngIf="isResponse">
+  <div class="row full-row-white-components" style="padding: 32px 0px 16px 0px;">
+      <div class="container">            
+          <div class="row">
+              <div class="heading-v1">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <h2>{{finances}}</h2>
+                  </div>
+              </div>
+          </div>            
+          <div class="row">
+              <div class="Financing_section">                    
+                  <div class="col-md-12 col-xs-12">
+                      <div class="table-heading">
+                          <h4>{{financePlanningTitle}}</h4>
+                      </div>
+                      <div class="c14v1-body c14v1-body-text responsive-table table-arrow-hide project-opt-table">
+                          <div class="paragraph table nosort">
+                              <div [class.hide]="isFinancePlanning">{{noData}}</div>
+                              <table width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive" [class.hide]="!isFinancePlanning">                                   
+                                  <tbody> 
+                                      <tr>
+                                          <th *ngFor="let header of financePlanningHeaders">{{header}}</th>
+                                      </tr>                                       
+                                      <tr *ngFor="let financer of financePlanning">
+                                          <td [attr.data-th]="financePlanningHeaders[0] + ':'">{{financer.name}}</td>
+                                          <td [attr.data-th]="financePlanningHeaders[1] + ':'">{{financer.amount}}</td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>                    
+                  <div class="col-md-12 col-xs-12" [@fadeInOut]="fadeInOut">
+                      <div class="table-heading">
+                          <h4>{{totalProjectFinancingTitle}}</h4>
+                      </div>
+                      <div class="row">
+                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                              <div class="c14v1-body c14v1-body-text responsive-table table-arrow-hide project-opt-table">
+                                  <div class="paragraph table nosort">
+                                  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive">
+                                      <tbody>
+                                          <tr>
+                                              <th *ngFor="let header of totalProjectFinancingHeaders1">{{header}}</th>
+                                          </tr>
+                                          <tr *ngFor="let financer of totalProjectFinancing1">
+                                              <td [attr.data-th]="totalProjectFinancingHeaders1[0] + ':'">{{financer.key}}</td>
+                                              <td [attr.data-th]="totalProjectFinancingHeaders1[1] + ':'">{{financer.value}}</td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                              <div class="c14v1-body c14v1-body-text responsive-table table-arrow-hide project-opt-table">
+                                  <div class="paragraph table nosort">
+                                  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive">
+                                      <tbody>
+                                          <tr>
+                                              <th>{{totalProjectFinancingHeaders2}}</th>
+                                              <th>{{lendingInstrument}}</th>
+                                          </tr>
+                                          <tr *ngFor="let financer of totalProjectFinancing2">
+                                              <td [attr.data-th]="totalProjectFinancingHeaders2 + ':'">{{financer.key}}</td>
+                                              <td [attr.data-th]="lendingInstrument + ':'">{{financer.value}}</td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>                
+                  <div class="col-md-12 col-xs-12" [@fadeInOut]="fadeInOut">
+                      <div class="table-heading">
+                          <h4>{{summaryFinancingTitle}}</h4>
+                          <p class="blurb-text"></p>
+                          <div class="accordion-group-btn" [class.hide]="!isSummaryFinancing">
+                              <span class="blurb-text">{{download}}: </span>                                
+                              <a (click)="onDownloadExcel('summaryFinancing')" class="accordion-download" data-type="excel" title="Download excel"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></a>
+                          </div>
+                      </div>
+                      <div class="c14v1-body c14v1-body-text responsive-table table-arrow-hide project-opt-table">
+                          <div class="paragraph table nosort table-scrollable">
+                              <div [class.hide]="isSummaryFinancing">{{noData}}</div>
+                              <table width="100%" border="0" cellspacing="0" cellpadding="0" class="row-border hover" [class.hide]="!isSummaryFinancing">
+                                  <tbody>   
+                                      <tr>
+                                          <th *ngFor="let header of summaryFinancingHeaders">{{header}}</th>                                      
+                                      </tr>                                                                              
+                                      <tr *ngFor="let financer of summaryFinancing">
+                                          <td [attr.data-th]="summaryFinancingHeaders[0] + ':'">{{financer.name}}</td>
+                                          <td [attr.data-th]="summaryFinancingHeaders[1] + ':'">{{financer.approvalDate}}</td>
+                                          <td [attr.data-th]="summaryFinancingHeaders[2] + ':'">{{financer.closingDate}}</td>
+                                          <td [attr.data-th]="summaryFinancingHeaders[3] + ':'">{{financer.principal}}</td>
+                                          <td [attr.data-th]="summaryFinancingHeaders[4] + ':'">{{financer.disbursed}}</td>
+                                          <td [attr.data-th]="summaryFinancingHeaders[5] + ':'">{{financer.repayments}}</td>
+                                          <td [attr.data-th]="summaryFinancingHeaders[6] + ':'">{{financer.interests}}</td>
+                                      </tr>                                   
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-12 col-xs-12" [@fadeInOut]="fadeInOut">
+                      <div class="table-heading">
+                          <h4>{{detailedFinancialTitle}}</h4>
+                          <p class="blurb-text"></p>
+                          <div class="accordion-group-btn" [class.hide]="!isDetailedFinancial">
+                              <span class="blurb-text">{{download}}: </span>                         
+                              <a (click)="onDownloadExcel('detailedFinancial')" class="accordion-download" data-type="excel" title="Download excel"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></a>
+                          </div>
+                      </div>
+                      <div class="c14v1-body c14v1-body-text responsive-table project-opt-table">
+                          <div class="paragraph table nosort table-scrollable">
+                              <div [class.hide]="isDetailedFinancial">{{noData}}</div>
+                              <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive hover project-operation-tab-table" [class.hide]="!isDetailedFinancial">
+                                  <thead>
+                                      <tr>
+                                          <!-- <th (click)="onSort();" *ngFor="let header of detailedFinancialHeaders">{{header}}
+                                            <span *ngIf="!reverse" class="fa fa-chevron-down arrow_up" ></span>
+                                            <span *ngIf="reverse" class="fa fa-chevron-up arrow_up" ></span>
+                                          </th> -->
+                                          <th (click)="onSortClick($event, 0,'period');">
+                                            {{detailedFinancialHeaders[0]}} 
+                                            <span  class="fa fa-chevron-up arrow_up"></span>
+                                            </th>	
+                                            <th (click)="onSortClick($event, 1,'financierLoan');">
+                                              {{detailedFinancialHeaders[1]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+                                              </th>	
+                                              <th (click)="onSortClick($event, 2,'transactionType');">
+                                                  {{detailedFinancialHeaders[2]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+                                                  </th>	
+                                          <th (click)="onSortClick($event, 3,'amount');">
+                                              {{detailedFinancialHeaders[3]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+                                              </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>                                        
+                                      <tr *ngFor="let financer of detailedFinancial">
+                                          <td [attr.data-th]="detailedFinancialHeaders[0] + ':'">{{financer.period}}</td>
+                                          <td [attr.data-th]="detailedFinancialHeaders[1] + ':'">{{financer.financierLoan}}</td>
+                                          <td [attr.data-th]="detailedFinancialHeaders[2] + ':'">{{financer.transactionType}}</td>
+                                          <td [attr.data-th]="detailedFinancialHeaders[3] + ':'">{{financer.amount}}</td>                                            
+                                      </tr> 
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              
+                  <div class="col-lg-12 col-md-12 col-xs-12" [@fadeInOut]="fadeInOut">
+                      <hr>
+                      <div class="footnotes-section">
+                          <a class="show-toggle" (click)="onFootNotes(!footNoteAnimation)">Footnotes</a>
+                          <div class="intro_paragraph" [@footNoteFadeInOut]="footNoteAnimation">
+                              <div class="_loop_lead_paragraph_sm">
+                                  <p class="disclaimer-text _loop_lead_paragraph_xs" *ngFor="let description of descriptions" [innerHTML]="description"></p>
+                              </div>
+                          </div>
+                      </div>                        
+                  </div>
+                                      
+                  <div class="col-md-12 col-xs-12">
+                      <div class="collapse-data"> 
+                          <a (click)="onLoadMore(!isCollapse)"><i [ngClass]="showMoreOrLessIcon"></i></a>                             
+                      </div>                        
+                  </div>                     
+              </div>
+          </div>         
+      </div>
+  </div>
+</section>

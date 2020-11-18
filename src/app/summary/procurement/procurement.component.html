@@ -1,0 +1,37 @@
+<div *ngIf="loading">    
+  <img src="{{imagePath}}" class="img-responsive center-block" style="margin: 0 auto;" alt="Loading"/>
+</div>
+
+<div class="row">
+  <div class="heading-v1">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h2>{{title}}</h2>
+      </div>
+  </div>
+  <!-- End heading-v1 -->
+  </div>
+  <!-- Begin Table -->
+  <div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="c14v1-body c14v1-body-text responsive-table project-opt-table">
+          <div class="paragraph table nosort">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive">
+                  <tbody>
+                      <tr></tr>
+                      <tr *ngFor="let procurement of procurementList">
+                          <td data-th *ngIf="procurement.bid_description!=null"><a href="{{procurementsPath}}{{procurement.id}}"><span [innerHtml]="procurement.bid_description"></span></a></td>
+                          <td data-th *ngIf="procurement.bid_description==null"><a href="{{procurementsPath}}{{procurement.id}}"><span [innerHtml]="procurement.project_name"></span></a></td>
+                          <td data-th>{{procurement.project_name + " - " + procurement.project_id}}</td>
+                          <td data-th>{{procurement.project_ctry_name}}</td>
+                          <td data-th width="200">{{procurement.noticedate | dateFormat : locale }}</td>
+                      </tr>                 
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      <div class="_loop_card_footer">
+          <a href="{{procurementSearchPath}}?showrecent=true&srce=notices" class="btn btn-default btn-lg primary-orange-btn">{{noticesList}}</a>
+      </div>
+      
+  </div>
+</div>

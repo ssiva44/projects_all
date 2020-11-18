@@ -1,0 +1,169 @@
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+			  <div class="ajax-div" *ngIf="loader">		
+				  <img src="{{imagePath}}" class="ajax-loader" alt="Loading" />
+			  </div>
+  
+	  <div class="table_tab1">  
+		  <div *ngIf="showTable"  class="table-heading">
+			 <div *ngIf="tabType=='notices'" class="accordion-group-btn">
+				<span class="blurb-text">{{downloadLabel}}: </span>
+				<a (click)="downloadExcel()" class="accordion-download" data-type="excel" title="Download excel"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></a>
+			 </div>
+			 
+			  <div *ngIf="tabType=='contract'" class="accordion-group-btn">
+				  <span class="blurb-text">{{downloadLabel}}: </span> 
+				  <a (click)="downloadExcel()" class="accordion-download" data-type="excel" title="Download excel"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></a>
+			  </div>
+			  
+			  <div *ngIf="tabType=='plan'" class="accordion-group-btn">
+				  <span class="blurb-text">{{downloadLabel}}: </span> 
+				  <a (click)="downloadExcel()" class="accordion-download" data-type="excel" title="Download excel"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></a>
+			  </div>		   
+		  </div>
+		  <div class="projects_procurement">
+		  <div class="c14v1-body c14v1-body-text project-opt-table responsive-table">
+			 <div class="paragraph table nosort" >
+			 
+  
+			 
+				 <!--for Procurement-Notices starts Here-->
+  
+				<table    class="row-border hover project-operation-tab-table" 
+				*ngIf="tabType=='notices'" [class.hideTable]="totalRecords == 0">
+					  <thead>
+						<tr>				 
+							  <th (click)="onSortClick($event, 0,'bid_description');">
+							  {{tableHeaders[0]}} 
+							  <span  class="fa fa-chevron-up arrow_up"></span>
+							  </th>	
+							  <th (click)="onSortClick($event, 1,'bid_description');">
+								{{tableHeaders[1]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+								</th>	
+								<th (click)="onSortClick($event, 2,'bid_description');">
+									{{tableHeaders[2]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+									</th>	
+							<th (click)="onSortClick($event, 3,'bid_description');">
+								{{tableHeaders[3]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+								</th>								
+						  </tr>	
+					  </thead>
+					  <tbody>
+						  <tr *ngFor="let noticesObject of urlResponse  "> 
+								  <td data-th>
+									  <a href="{{domain}}{{locale}}/projects-operations/procurement-detail/{{noticesObject.id}}">{{( noticesObject.bid_description === undefined || noticesObject.bid_description === '' )? noticesObject.notice_type : noticesObject.bid_description}}</a>
+								  </td>
+								  <td [attr.data-th]="tableHeaders[1]+':'">{{noticesObject.notice_type}}</td>
+								  <td [attr.data-th]="tableHeaders[2]+':'">{{noticesObject.notice_status}}</td>
+								  <td [attr.data-th]="tableHeaders[3]+':'">{{noticesObject.submission_date | dateFormatPipe: locale}}</td>
+						  </tr>
+  
+					  </tbody>
+				</table>
+				
+			  <!--for Procurement-Notices ends Here-->
+			 
+				 <!--for Procurement-Contract starts Here-->
+  
+				<table class="row-border hover project-operation-tab-table"
+				 *ngIf="tabType=='contract'" [class.hideTable]="totalRecords == 0">
+					  <thead>
+						  <tr style="display: table-row;">					 
+							<th (click)="onSortClick($event, 0,'contr_desc');">
+								{{tableHeaders[0]}} 
+								<span  class="fa fa-chevron-up arrow_up"></span>
+								</th>	
+								<th (click)="onSortClick($event, 1,'contr_desc');">
+								  {{tableHeaders[1]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+								  </th>	
+								  <th (click)="onSortClick($event, 2,'contr_desc');">
+									  {{tableHeaders[2]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+									  </th>	
+							  <th (click)="onSortClick($event, 3,'contr_desc');">
+								  {{tableHeaders[3]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+								  </th>  
+								  <th (click)="onSortClick($event, 4,'contr_desc');">
+									{{tableHeaders[4]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+									</th>                    
+						  </tr>	
+					  </thead>
+					  <tbody>
+						  <tr *ngFor="let contractObject of urlResponse " > 
+							  <td data-th><a href="{{domain}}{{locale}}/projects-operations/contractoverview/{{contractObject.contr_id}}">{{contractObject.contr_desc | titlecase}}</a></td>
+							  <td [attr.data-th]="tableHeaders[1]+':'">{{contractObject.procu_meth_text}}</td>
+							  <td [attr.data-th]="tableHeaders[2]+':'">{{contractObject.procurement_group}}</td>
+							  <td [attr.data-th]="tableHeaders[3]+':'">{{(contractObject.contr_sgn_date) | dateFormatPipe: locale}}</td> 
+							  <td [attr.data-th]="tableHeaders[4]+':'">{{contractObject.total_contr_amnt | toCurrencyPipe}}</td>
+						  </tr>
+					  </tbody>
+				</table>
+				
+					<!--for Procurement-Contract ends Here-->
+				  
+				  <!--for Procurement-plan starts Here-->
+  
+				<table  
+				class="row-border hover project-operation-tab-table" *ngIf="tabType=='plan'" [class.hideTable]="totalRecords == 0">
+					  <thead>
+						  <tr style="display: table-row;">					 
+							<th (click)="onSortClick($event, 0,'display_title');">
+								{{tableHeaders[0]}} 
+								<span  class="fa fa-chevron-up arrow_up"></span>
+								</th>	
+								<th (click)="onSortClick($event, 1,'display_title');">
+								  {{tableHeaders[1]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+								  </th>	
+								  <th (click)="onSortClick($event, 2,'display_title');">
+									  {{tableHeaders[2]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+									  </th>	
+							  <th (click)="onSortClick($event, 3,'display_title');">
+								  {{tableHeaders[3]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+								  </th>  
+								                        
+						  </tr>	
+					  </thead>
+					  <tbody>
+						  <tr *ngFor="let planObject of urlResponse"> 
+							  <td data-th><a href="{{planObject.url | replacestring : 'documentsqa' : 'documents'}}">{{planObject.display_title | objectFilter}} ({{planObject.lang | objectFilter}})</a></td>
+							  <td [attr.data-th]="tableHeaders[1]+':'">{{planObject.docdt | dateFormatPipe: locale}}</td>
+							  <td [attr.data-th]="tableHeaders[2]+':'">{{planObject.repnb}}</td>
+							  <td [attr.data-th]="tableHeaders[3]+':'">{{planObject.docty | objectFilter}}</td>
+						  </tr>
+					  </tbody>
+				</table>
+				
+					<!--for Procurement-plan ends Here-->
+  
+				  <!--for error message starts Here-->			   
+				  <div *ngIf="totalRecords == 0" class="procurement_notices">	
+					  {{errorMsg}}	
+				  </div>	
+				  <!--for error message ends Here-->	
+							 
+			 </div>
+		  </div>
+		  </div>
+	   </div>
+	   
+		  <div *ngIf="showTable && totalRecords*1 > rowsCount*1" class="row">
+			  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				  <div id="loadMore1">
+				  <a  (click)="callAPI(rowsCount*1+20,'load-more-click')" class="btn-default btn-lg _loop_btn_secondary">{{loadMoreLabel}}</a>
+				  </div>
+				  
+				  <div class="totop"> 
+				  <a  id="totop" style="display: block;" (click)="onScrollToTop(); false">Back to top</a> 
+				  </div>
+			  </div>
+		  </div> 
+  
+	</div>
+  </div>
+  
+  <style>
+  .hideTable {
+	display: none;
+  }
+  </style>
+  

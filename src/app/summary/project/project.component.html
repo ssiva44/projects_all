@@ -1,0 +1,43 @@
+<div *ngIf="loading">    
+  <img src="{{imagePath}}" class="img-responsive center-block" style="margin: 0 auto;" alt="Loading"/>
+</div>
+
+<div class="row full-row-gray-components">
+  <div class="container">
+     <div class="row">
+          <div class="heading-v1">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <h2>{{title}}</h2>
+              </div>
+          </div>
+        <!-- End heading-v1 -->
+     </div>
+     <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="c14v1-body c14v1-body-text responsive-table project-opt-table">
+                  <div class="paragraph table nosort">
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive">
+                          <tbody>
+                              <tr>
+                                  <th>{{projectHeaders[1]}}</th>
+                                  <th>{{projectHeaders[0]}}</th>
+                                  <th>{{projectHeaders[2]}}</th>
+                                  </tr>
+                              <tr *ngFor="let project of projectsList">
+                                      
+                                  <td data-th><a href="{{projectsPath}}{{project.id}}"><span [innerHtml]="project.project_name"></span></a></td>
+                                  <td data-th *ngIf="locale=='en'">{{project.countryname}}</td>
+                                  <td data-th *ngIf="locale!='en'">{{project.countryname[0]}}</td>
+                                  <td data-th width="200">{{project.boardapprovaldate | dateFormat : locale}}</td>
+                              </tr>                                
+                          </tbody>
+                      </table>
+                  </div>
+              </div> 
+              <div class="_loop_card_footer">
+                      <a href="{{projectListPath}}" class="btn btn-default btn-lg primary-orange-btn">{{projectsListLabel}}</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

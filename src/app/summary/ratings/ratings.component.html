@@ -1,0 +1,186 @@
+<!-- Begin Ratings section -->
+<section *ngIf="totalRecords>0" id="ratings">
+        <div class="row full-row-white-components" style="padding: 32px 0px 16px 0px;">
+           <div class="container">
+              <div class="row">
+                 <div class="heading-v1">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                       <h2>Ratings</h2>
+                    </div>
+                 </div>
+              </div>
+              <!-- End heading-v1 -->
+              <!-- Begin Table -->
+              <div class="row">
+                 <div class="Ratings_section ">
+                    <div class="col-md-12 col-xs-12">
+                       <div class="table-heading">
+                          <h4>{{implementingRatingsLabel}}</h4>
+                          <p class="blurb-text"></p>
+                       </div>
+                       
+                       <div class="c14v1-body c14v1-body-text responsive-table table-arrow-hide project-opt-table" >
+                          <div class="paragraph table nosort" *ngIf="IRTable">
+                             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive">
+                                <tbody>
+                                   <tr>
+                                      <th></th>
+                                      <th>{{prev_rating}}</th>
+                                      <th>{{curr_rating}}: {{statusdate| date: dataFormat}}</th>
+                                   </tr>
+                                   <tr *ngIf="performance_templatename_first_val !== undefined">
+                                      <td data-th>{{performance_templatename_first_val}}</td>
+                                      <td [attr.data-th]="prev_rating + ': ' + (laststatusdate | date: dataFormat) + ':'">{{performance_prevrating_first_val | titlecase}} </td>
+                                      <td [attr.data-th]="curr_rating + ': ' + (statusdate | date: dataFormat) + ':'">{{performance_currrating_first_val | titlecase}}</td>
+                                   </tr>
+                                   <tr *ngIf="performance_templatename_second_val !== undefined">
+                                      <td data-th>{{performance_templatename_second_val | titlecase}}</td>
+                                      <td [attr.data-th]="prev_rating + ': ' + (laststatusdate | date: dataFormat) + ':'">{{performance_prevrating_second_val| titlecase}}</td>
+                                      <td [attr.data-th]="curr_rating + ': ' + (statusdate | date: dataFormat) + ':'">{{performance_currrating_second_val | titlecase}}</td>
+                                   </tr>
+                                    <tr *ngIf="catname !== undefined">
+                                      <td data-th>{{catname}}</td>
+                                      <td [attr.data-th]="prev_rating + ': ' + (laststatusdate | date: dataFormat) + ':'">{{overall_prevrating | titlecase}}</td>
+                                      <td [attr.data-th]="curr_rating + ': ' + (statusdate | date: dataFormat) + ':'">{{overall_currentrating | titlecase}}</td>
+                                   </tr>
+                                </tbody>
+                             </table>
+                          </div>
+                          
+                          <div class="paragraph table nosort"  *ngIf="!IRTable">
+                             {{ratingsErrorMessage}}
+                          </div>
+                       </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-12 col-xs-12" [@fadeInOut]="fadeInOut">
+                       <div class="table-heading">
+                          <h4>{{completionRatingsLabel}}</h4>
+                          <p class="blurb-text"></p>
+                       </div>
+                       
+                       <div class="c14v1-body c14v1-body-text responsive-table table-arrow-hide project-opt-table">
+                          <div class="paragraph table nosort" *ngIf="CRTable">
+                             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive">
+                                <tbody>
+                                   <tr>
+                                      <th>{{indicator}}</th>
+                                      <th>{{icr_report}}: {{icrdate | date: dataFormat}}</th>
+                                   </tr>	
+                               
+                                   <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{outcomes}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (icrdate | date: dataFormat) + ':'">{{outratingind | titlecase}} </td>
+                                   </tr>							  
+                                   <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{risk_to_development_outcome}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (icrdate | date: dataFormat) + ':'">{{completion_riskdo | titlecase}}</td>
+                                   </tr>							  
+                                   <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{bank_performance}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (icrdate | date: dataFormat) + ':'">{{overallrating | titlecase}}</td>
+                                   </tr>							  
+                                    <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{borrower_performance}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (icrdate | date: dataFormat) + ':'">{{borroverall | titlecase}}</td>
+                                   </tr>							  
+                                    <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{government_performance}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (icrdate | date: dataFormat) + ':'">{{borrgovt | titlecase}}</td>
+                                   </tr>							  
+                                    <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{implementing_agency}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (icrdate | date: dataFormat) + ':'">{{borrimplegency | titlecase}}</td>
+                                   </tr>
+                                </tbody>
+                             </table>
+                          </div>
+                          <div class="paragraph table nosort" *ngIf="!CRTable">
+                             {{ratingsErrorMessage}}
+                          </div>
+                          
+                       </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-12 col-xs-12" [@fadeInOut]="fadeInOut">
+                       <div class="table-heading">
+                          <h4>{{independantEvaluationRatingsLabel}}</h4>
+                          <p class="blurb-text"></p>
+                       </div>
+                       
+                       <div class="c14v1-body c14v1-body-text responsive-table table-arrow-hide project-opt-table">
+                          <div class="paragraph table nosort" *ngIf="IERTable">
+                             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive">
+                                <tbody>
+                                   <tr>
+                                      <th>{{indicator}}</th>
+                                      <th>{{icr_review}}: {{evaldate_first_val | date: dataFormat}}</th>
+                                      <th>{{ppa_report}}: {{evaldate_second_val | date: dataFormat}}</th>
+                                   </tr>
+     
+                                   <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{outcome_rating | titlecase}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (evaldate_first_val | date: dataFormat) + ':'">{{outcome_first_val | titlecase}} </td>
+                                      <td [attr.data-th]="ppa_report + ': ' + (evaldate_second_val | date: dataFormat) + ':'">{{outcome_second_val | titlecase}}</td>
+                                   </tr>
+                                   <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{risk_to_development_outcome | titlecase}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (evaldate_first_val | date: dataFormat) + ':'">{{evaluation_riskdo_first_val | titlecase}}</td>
+                                      <td [attr.data-th]="ppa_report + ': ' + (evaldate_second_val | date: dataFormat) + ':'">{{evaluation_riskdo_second_val | titlecase}}</td>
+                                   </tr>
+                                   <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{bank_performance | titlecase}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (evaldate_first_val | date: dataFormat) + ':'">{{overallbankperf_first_val | titlecase}}</td>
+                                      <td [attr.data-th]="ppa_report + ': ' + (evaldate_second_val | date: dataFormat) + ':'">{{overallbankperf_second_val | titlecase}}</td>
+                                   </tr>
+                                   <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{borrower_performance | titlecase}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (evaldate_first_val | date: dataFormat) + ':'">{{overallborrowperf_first_val | titlecase}}</td>
+                                      <td [attr.data-th]="ppa_report + ': ' + (evaldate_second_val | date: dataFormat) + ':'">{{overallborrowperf_second_val | titlecase}}</td>
+                                   </tr>
+                                   <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{government_performance | titlecase}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (evaldate_first_val | date: dataFormat) + ':'">{{borrowcompliance_first_val | titlecase}}</td>
+                                      <td [attr.data-th]="ppa_report + ': ' + (evaldate_second_val | date: dataFormat) + ':'">{{borrowcompliance_second_val | titlecase}}</td>
+                                   </tr>
+                                   <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{implementing_agency | titlecase}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (evaldate_first_val | date: dataFormat) + ':'">{{borrowimplementation_first_val | titlecase}}</td>
+                                      <td [attr.data-th]="ppa_report + ': ' + (evaldate_second_val | date: dataFormat) + ':'">{{borrowimplementation_second_val | titlecase}}</td>
+                                   </tr>
+                                   <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{icrquality | titlecase}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (evaldate_first_val | date: dataFormat) + ':'">{{icrquality_first_val | titlecase}}</td>
+                                      <td [attr.data-th]="ppa_report + ': ' + (evaldate_second_val | date: dataFormat) + ':'">{{icrquality_second_val | titlecase}}</td>
+                                   </tr>
+                                   <tr>
+                                      <td [attr.data-th]="indicator + ':'">{{mequality | titlecase}}</td>
+                                      <td [attr.data-th]="icr_report + ': ' + (evaldate_first_val | date: dataFormat) + ':'">{{mequality_first_val | titlecase}}</td>
+                                      <td [attr.data-th]="ppa_report + ': ' + (evaldate_second_val | date: dataFormat) + ':'">{{mequality_second_val | titlecase}}</td>
+                                   </tr>
+                               </tbody>
+                             </table>
+                          </div>
+                          
+                          <div class="paragraph table nosort" *ngIf="!IERTable">
+                             {{ratingsErrorMessage}}
+                          </div>
+                       </div>
+                    </div>
+                    
+                    <!-- begin expand -->
+                     <div class="col-md-12 col-xs-12">
+                         <div class="collapse-data"> 
+                             <a (click)="onLoadMore(!isCollapse)"><i [ngClass]="showMoreOrLessIcon"></i></a>                             
+                         </div>                        
+                     </div>  
+                    <!-- end expand --> 
+                 </div>
+              </div>
+              <!-- End Table -->
+           </div>
+        </div>
+     </section>
+     <!-- End Ratings section -->   

@@ -1,0 +1,58 @@
+<div class="ajax-div" *ngIf="loading">    
+  <img src="{{imagePath}}" class="ajax-loader" alt="Loading"/>
+</div>
+
+<div class="row full-row-gray-components" >
+  <div class="container">
+    <div *ngIf="total != 0; else nodata;">
+      <div class="row">
+          <div class="col-md-12 col-sm-12">
+              <ctrysearchprjs [apiResponse]="apiResponse" [summaryrouting]="summaryrouting" 
+               [locale]="locale" [projectrouting]="projectrouting" [buttonLink]="buttonLink" [projectDetailsPath]="projectDetailsPath" [ctryCode]="ctryCode" [sectorCode]="sectorCode" [regionName]="regionName" [mapPath]="mapPath">Loading..</ctrysearchprjs>
+          </div>
+      </div>
+      <div class="row">
+          <ctryoperations [locale]="locale" [apiResponse]="apiResponse" >Loading..</ctryoperations>
+          <ctrysectortheme [cType]="'sector'"  [locale]="locale" [apiResponse]="apiResponse" >Loading..</ctrysectortheme>
+          <ctrysectortheme [cType]="'themes'"  [locale]="locale" [apiResponse]="apiResponse" >Loading..</ctrysectortheme>
+      </div>
+    </div>
+    
+  </div>
+</div> 
+
+<div class="row clearfix full-row-white-components" style="padding: 32px 0px 32px 0px; ">
+  <div class="container">
+<ul class="row">
+  <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="footnotes-section" >
+        <div (click)="hideFootnotes()">
+          <a >Footnotes</a>
+          <span class="fa fa-chevron-down arrow_up arrow_size" ></span>
+        </div>
+      
+      <div class="intro_paragraph" [ngClass]="{'display-none': !isFootNotes }">
+              <div class="_loop_lead_paragraph_sm pull-left">
+                  <p class="disclaimer-text _loop_lead_paragraph_xs" *ngFor="let description of disclaimerText"  [innerHTML]="description"></p>
+              </div>
+          </div>
+      </div>
+  </li>
+</ul>
+</div>
+</div> 
+
+<ng-template #nodata>
+  <div  class="row full-row-gray-components">
+      <div  class="container">
+         <div  class="row">
+         <div  class="col-md-12 col-sm-12">
+         <div class="_loop_card_header_main_footer">
+            Sorry, there are no results that match your search
+         </div>
+         </div>
+        </div>      
+       </div>
+    </div>
+</ng-template>
+

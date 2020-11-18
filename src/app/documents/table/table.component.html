@@ -1,0 +1,129 @@
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	
+ <div class="ajax-div" *ngIf="loader">		
+	 <img src="{{imagePath}}" class="ajax-loader" alt="Loading" />
+ </div>
+	
+	 <div class="table_tab1">
+	 
+	 <div *ngIf="showTable"  class="table-heading">
+			<div *ngIf="tabType=='projects'" class="accordion-group-btn">
+			 <span class="blurb-text">{{downloadLabel}}: </span>
+			 <a (click)="downloadExcel()" class="accordion-download" data-type="excel" title="Download excel"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></a>
+			</div>
+			
+		 <div *ngIf="tabType=='archival'" class="accordion-group-btn">
+			 <span class="blurb-text">{{downloadLabel}}: </span> 
+			 <a (click)="downloadExcel()" class="accordion-download" data-type="excel" title="Download excel"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></a>
+		 </div>	   
+	 </div>
+		 
+		<div class="c14v1-body c14v1-body-text project-opt-table responsive-table">
+		 <div class="paragraph table">
+		 
+		 <!--for Projects starts Here-->
+				<table data-page-length='20' class="row-border hover project-operation-tab-table" *ngIf="tabType=='projects' || type=='projects'" [class.hideTable]="totalRecords == 0">
+			 <thead>
+				 <tr>
+				 <!-- <th data-customlink="ss:header" (click)="onSort(projectHeadersProperties[i], sortType)" *ngFor="let tableHeaderValue of tableHeaders;let i = index">
+				 {{tableHeaderValue}} <span *ngIf="!reverse" class="fa fa-chevron-down arrow_up" ></span>
+				 <span *ngIf="reverse" class="fa fa-chevron-up arrow_up" ></span>
+				 </th>	 -->
+
+				 <th (click)="onSortClick($event, 0,'display_title');">
+					{{tableHeaders[0]}} 
+					<span  class="fa fa-chevron-up arrow_up"></span>
+					</th>	
+					<th (click)="onSortClick($event, 1,'docdt');">
+					  {{tableHeaders[1]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+					  </th>	
+					  <th (click)="onSortClick($event, 2,'display_title');">
+						  {{tableHeaders[2]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+						  </th>	
+				  <th (click)="onSortClick($event, 3,'docty');">
+					  {{tableHeaders[3]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+					  </th>
+				 </tr>
+			 </thead>
+			 <tbody>
+				 <tr *ngFor="let projectsObject of urlResponse"> 
+					 <td [attr.data-th]=""><a href="{{projectsObject.url}}">{{projectsObject.display_title | objectFilter}} ({{projectsObject.lang | objectFilter}})</a></td>
+					 <td [attr.data-th]="tableHeaders[1] + ':'">{{projectsObject.docdt | dateFormatPipe: locale}}</td>
+					 <td [attr.data-th]="tableHeaders[2] + ':'">{{projectsObject.repnb}}</td>
+					 <td [attr.data-th]="tableHeaders[3] + ':'">{{projectsObject.docty | objectFilter}}</td>
+				 </tr>
+			 </tbody>
+				</table>
+				<!--for Projects ends Here-->
+
+				<!--for Archival starts Here-->
+				<table data-page-length='20' class="row-border hover project-operation-tab-table" *ngIf="tabType=='archival' || type=='archival'" [class.hideTable]="totalRecords == 0">
+			 <thead>
+				 <tr>
+				 <!-- <th data-customlink="ss:header" (click)="onArchiveSort(archiveHeadersProperties[i], sortArchieveType)" *ngFor="let tableHeaderValue of tableHeaders;let i = index">
+				 {{tableHeaderValue}}<span *ngIf="!reverse" class="fa fa-chevron-down arrow_up" ></span>
+				 <span *ngIf="reverse" class="fa fa-chevron-up arrow_up" ></span>
+				 </th>	 -->
+
+				 <th (click)="onSortClick($event, 0,'folder_title');">
+					{{tableHeaders[0]}} 
+					<span  class="fa fa-chevron-up arrow_up"></span>
+					</th>	
+					<th (click)="onSortClick($event, 1,'id');">
+					  {{tableHeaders[1]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+					  </th>	
+					  <th (click)="onSortClick($event, 2,'start_date');">
+						  {{tableHeaders[2]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+						  </th>	
+				  <th (click)="onSortClick($event, 3,'disclosure_status');">
+					  {{tableHeaders[3]}}  <span class="fa fa-chevron-up arrow_up" ></span>
+					  </th>
+				 </tr>
+			 </thead>
+			 <tbody>
+				 <tr *ngFor="let archivalObject of urlResponse"> 
+					 <td [attr.data-th]="" *ngIf="archivalObject.folder_url == undefined">{{archivalObject.folder_title}}</td>
+					 <td [attr.data-th]="" *ngIf="archivalObject.folder_url != undefined"><a href="{{archivalObject.folder_url}}">{{archivalObject.folder_title}}</a></td>
+					 <td [attr.data-th]="tableHeaders[0] + ':'">{{archivalObject.id}}</td>					
+					 <td [attr.data-th]="tableHeaders[2] + ':'">{{archivalObject.start_date | dateFormatPipe: locale}} - {{archivalObject.end_date | dateFormatPipe: locale}}</td>
+					 <td [attr.data-th]="tableHeaders[3] + ':'">{{archivalObject.disclosure_status | titlecase}}</td>
+				 </tr>
+			 </tbody>
+				</table>
+				<!--for Archival ends Here-->
+				
+			 <!--for error message starts Here-->			   
+			 <div *ngIf="totalRecords == 0" class="procurement_notices">	
+				 {{errorMsg}}	
+			 </div>	
+			 <!--for error message ends Here-->			   
+		 </div>
+		</div>
+	 </div>
+	 
+
+ <div *ngIf="showTable && totalRecords*1 > rowsCount*1" class="row">
+	 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		 <div id="loadMore1">
+			 <a  (click)="callAPI(rowsCount*1+20,'load-more-click','')" class="btn-default btn-lg _loop_btn_secondary">{{loadMoreLabel}}</a>
+		 </div>
+		 <div class="totop"> 
+			 <a  id="totop" style="display: block;" (click)="onScrollToTop(); false">Back to top</a> 
+		 </div>
+	 </div>
+ </div>
+ 
+
+
+<div class="c14v1-body c14v1-body-text" *ngIf="tabType=='archival'">
+ <p [innerHTML]="disclaimerText"></p>
+</div>
+	</div>
+</div>
+
+<style>
+.hideTable {
+ display: none;
+}
+</style>

@@ -1,0 +1,75 @@
+<!-- Begin Project List -->
+
+<div class="row full-row-white-components">
+  <div class="container"> 
+     <div class="row">
+        <!-- Begin Project List table -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <!-- Begin Project Listing -->
+    <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <section class="tab-set">
+          <ul class="nav nav-tabs">
+            <li (click)="tab('1',$event)">
+               <a class="menu-active btn" >
+                {{noticesLabel}}
+                </a>
+            </li>
+            <li (click)="tab('2',$event)">
+                <a class="btn" >
+                   {{contractsLabel}} 
+                  </a>
+            </li>
+            <li (click)="tab('3',$event)">
+              <a class="btn" >
+                 {{plansLabel}} 
+                </a>
+          </li>
+          </ul>
+        </section>
+
+        <section>
+         <!-- <tabset> 
+          <projects-tab title="{{noticesLabel}}"> -->
+            <div *ngIf="isTab1">
+            <table-api [imagePath]="imagePath" [domain]="domain" [projectId]="projectId" [tableHeaders]= "noticesTableHeaders" [locale]="locale" [apiUrl]="noticesApiUrl" [inputApiUrl]="noticesApiUrl" [loadMoreLabel]="loadMoreLabel" [errorMsg]="noticesErrorMessage" tabType="notices" [downloadLabel]="downloadLabel"> Loading...</table-api>
+          </div>
+            <!-- </projects-tab>
+          <projects-tab title="{{contractsLabel}}"> -->
+            <div *ngIf="isTab2">
+            <table-api [imagePath]="imagePath" [domain]="domain" [projectId]="projectId" [tableHeaders]= "contractsTableHeaders" [locale]="locale" [apiUrl]="contractsApiUrl" [inputApiUrl]="contractsApiUrl" [loadMoreLabel]="loadMoreLabel" [errorMsg]="contractErrorMessage" tabType="contract" [downloadLabel]="downloadLabel"> Loading...</table-api>
+          </div>
+            <!-- </projects-tab>
+          <projects-tab title="{{plansLabel}}"> -->
+            <div *ngIf="isTab3">
+            <table-api [imagePath]="imagePath" [domain]="domain" [projectId]="projectId" [tableHeaders]= "planTableHeaders" [locale]="locale" [apiUrl]="planApiUrl" 
+            [inputApiUrl]="planApiUrl" [loadMoreLabel]="loadMoreLabel" [errorMsg]="planErrorMessage" tabType="plan" [downloadLabel]="downloadLabel"> Loading...</table-api>
+          </div>
+            <!-- </projects-tab>
+         </tabset> -->
+        </section>
+       </div>
+    </div>
+    <!-- End Project Listing -->
+     <!-- Begin Caption -->
+                
+           <!-- End Caption -->
+        </div>
+        <!-- Begin Project List table -->
+     </div>
+     <ul class="row">
+      <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="footnotes-section">
+          <a class="show-toggle" (click)="onFootNotes(!footNoteAnimation)">Footnotes</a>
+              <div class="intro_paragraph" [@footNoteFadeInOut]="footNoteAnimation">
+                  <div class="_loop_lead_paragraph_sm pull-left">
+                      <p class="disclaimer-text _loop_lead_paragraph_xs"  [innerHTML]="disclaimerText"></p>
+                  </div>
+              </div>
+          </div>
+      </li>
+  </ul>
+  </div>
+</div>
+
+<!-- End Project List -->

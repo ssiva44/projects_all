@@ -1,0 +1,186 @@
+
+<div class="lang-toggler language_toggler parbase" >
+  <div class="breadcrumb-section breadcrumb_13">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                  <div class="page-title">
+                      <ol class="breadcrumb_redesign">
+                          <li><a class="l1-breadcrumb" href="/en/what-we-do">What We Do</a></li>
+                          <li class="hidden-sm hidden-xs"><a class="l1-breadcrumb" href="/en/projects-operations/projects-home">Projects &amp; Operations</a></li>
+                      </ol>
+                  </div>
+              </div><!-- End Page Title -->
+              
+              
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                  
+                  <!--START: Mobile language switch -->
+                  <div class="lang-switch-mobile hidden-lg hidden-md">
+                      <div class="page-langswitch " id="lang-click" style="cursor: pointer;">
+                          <ul>
+                              <li><span>This page in: </span>
+                                  <span class="dropdown-toggle" aria-expanded="false">
+                                      <span>
+                                          EN
+                                      </span>
+                                      <span><!--<img src="/etc/designs/wbrrdesign/clientlibs-wbrredsign/img/angle-down.svg" />-->
+                                          <i class="icon icon-angle-down" style="cursor: pointer;"><span class="sr-only">dropdown</span></i>
+                                      </span>
+                                  </span>
+                              </li>
+                          </ul>
+                      </div>
+                      <div class="langswitch-dropdown float-right" id="lang-drop" style="display: none;">
+                          <ul class="dropdown-menu-right">
+                              
+                              <li><a href="https://aemprojects.worldbank.org/es/projects-operations/projects-home">Español</a></li>
+                              
+                              <li><a href="https://aemprojects.worldbank.org/fr/projects-operations/projects-home">Français</a></li>
+                              
+                              <li><a href="https://aemprojects.worldbank.org/ar/projects-operations/projects-home">العربية</a></li>
+                              
+                              <li><a href="https://aemprojects.worldbank.org/ru/projects-operations/projects-home">Русский</a></li>
+                              
+                              <li><a href="https://aemprojects.worldbank.org/zh/projects-operations/projects-home">中文</a></li>
+                              
+                              <li><a href="https://aemprojects.worldbank.org/pt/projects-operations/projects-home">Português</a></li>
+                              
+                          </ul>
+                      </div>      
+                  </div>
+                  <!--END: Mobile language switch -->
+                  
+                  
+                  <div class="lang-switch-desktop hidden-sm hidden-xs ">
+                      <!--START: desktop language switch -->
+                      <span class="page-in">This page in:<span class="space"></span></span>
+                      <ul>
+                          <li class="in-else"><a (click)="langSetting('en')">English</a></li>
+                              <li class="in-else"><a (click)="langSetting('es')">Español</a></li>
+                              <li class="in-else"><a (click)="langSetting('fr')">Français</a></li>
+                              <li class="in-else"><a (click)="langSetting('ar')">العربية</a></li>
+                              <li class="in-else"><a (click)="langSetting('ru')">Русский</a></li>
+                              <li class="in-else"><a (click)="langSetting('zh')">中文</a></li>
+                          <ul class="lang-dropdown" (click)="portugues()" id="more-language" [ngClass]="{'display-none': !isPortugues }">
+                              <li class="in-else"><a (click)="langSetting('pt')">Português</a></li>
+                          </ul>
+                      <li class="dropdown-link ">
+                          <a id="dropdown-more-language" ><i class="icon icon-angle-down"></i></a>
+                      </li>
+                      
+                  </ul></div>
+                  
+                  <!--END: desktop anguage switch -->
+                  
+                  
+                  
+              </div><!-- End of lang toggler -->
+              
+              
+          </div>
+      </div>
+  </div>
+  
+  
+  <div class="clearix"></div>
+  
+  </div>
+
+
+
+<div class="par parsys" ><div class="supergrid parbase section">
+  <div class="row full-row-dark-blue-components" style="padding: 80px 0px 64px 0px; background-color:#0071bc">
+      <div class="container">
+            <div class="">
+    <div class="par parsys"><div class="project_title section">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="isprojdetails">
+                <h1 id="projects-title"  style="color:#fff;">{{project_name}}</h1>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" *ngIf="!isprojdetails">
+              <h1 id="projects-title"  style="color:#fff;">{{project}}</h1>
+          </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" *ngIf="!isprojdetails">
+              <div class="">
+                                             
+                                  <div class="header-search-section">                                        
+                                      <form class="input-group research-search_code_at_the_end" >
+                                          <input type="text"  placeholder="{{search}}" class="search-input-field-1" name="qterm" [(ngModel)]="txtSearch" title="search">
+                                          <input class="search-submit-icon redesign-research-button" (click)="searchBox()" type="image" src="/etc/designs/wbrrdesign/clientlibs-wbrredsign/img/search-orange.svg" alt="listingsearch">
+                                      </form>
+                                  </div>                                    
+                              
+              </div>
+          </div>
+          </div>
+    </div>
+</div>
+
+          </div>
+      </div>     
+  </div>
+
+<div class="projects_tab parbase section">
+<div class="">
+  <div class="container">
+    <nav class="loop-tabs _loop_page_nav " id="wrap">
+         <ul class="primary-tabs _loop_page_nav_list" id="dropdown-tab">
+      <li *ngIf="isprojdetails" class="_loop_nav_list_item"><a class="active" (click)="navigationRouting('summary',$event)" id="summary_top"   >{{summary}}</a></li> 
+            <li *ngIf="isprojdetails" class="_loop_nav_list_item"><a (click)="navigationRouting('procurement',$event)" id="procurement_top" >{{procurement}}</a></li> 
+            <li *ngIf="isprojdetails" class="_loop_nav_list_item"><a (click)="navigationRouting('documents',$event)"  id="documents_top" >{{documents}}</a></li> 
+            <li  *ngIf="isprojdetails" class="_loop_nav_list_item"><a  (click)="navigationRouting('news',$event)" id="news">{{news}}</a></li> 
+            <li  class="_loop_nav_list_item" *ngIf="summary_locale=='en'&&isprojdetails"><a  (click)="navigationRouting('photo',$event)" id="photo_top" >{{photo}}</a></li> 
+       
+        <li *ngIf="!isprojdetails" class="_loop_nav_list_item"><a class="active" (click)="navigationRouting('projectsummary',$event)" id="projectsummary">{{summary}}</a></li> 
+            <li *ngIf="!isprojdetails" class="_loop_nav_list_item"><a   (click)="navigationRouting('projectslist',$event)" id="projectslist">{{projectlist}}</a></li> 
+          </ul>
+        
+    </nav>
+    
+       
+     
+      
+  
+     
+     
+    <html><head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8"><meta name="Robots" content="NOINDEX " /></head><body></body>
+                  <script type="text/javascript">
+                   var gearPage = document.getElementById('GearPage');
+                   if(null != gearPage)
+                   {
+                       gearPage.parentNode.removeChild(gearPage);
+                       document.title = "Error";
+                   }
+                   </script>
+                   </html>
+  
+                  </div>
+                </div>
+ 
+</div>
+
+
+<router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+<!-- 
+ <div class="row full-row-white-components">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-xs-12">
+        <div class="ajax-div" *ngIf="loading">    
+          <img src="{{imagePath}}" class="ajax-loader" alt="Loading"/>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div> -->

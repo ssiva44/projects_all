@@ -1,0 +1,33 @@
+<ul class="sidebar-list" *ngFor="let facet of facets; let i = index">
+	
+	<li class="sidebar-list-item" *ngIf="facet.facetName != ''" (click)="onCollapse(facet.facetName)">
+		<a class="sidebar-link" attr.aria-expanded="{{(collapseFacets | contains : facet.facetName)}}">{{facet.facetLabel}}</a>
+	</li>
+	<ul class="sidebar-sublist" *ngIf="facet.facetName != '' " [@facetFadeInOut]="collapseFacets | facetAnimation : facet.facetName">
+		<li *ngFor="let facetItem of facet.facetItems | facetContains : limitFacets : i">
+			<div class="_loop_checkbox">
+				<input data-customlink="sf:body content" class="_loop_primary_checkbox" type="checkbox" [checked]="selectedFacets | checked : facet.facetName : facetItem.name" (change)="onFacetItem(facet.facetName, facetItem.name)" />
+				<label for="srchwtn" *ngIf="facet.facetName == 'cons_serv_reqd_ind_exact'">
+					<div class="sidebar-sublist_wrapper">
+						<span *ngIf="facetItem.label == 'N'" class="sidebar-sublist-item">No &nbsp;</span>
+						<span *ngIf="facetItem.label == 'Y'" class="sidebar-sublist-item">Yes &nbsp;</span>
+						<span *ngIf="(facetItem.label != 'N' && facetItem.label != 'Y')" class="sidebar-sublist-item">{{facetItem.label}} &nbsp;</span>
+						<span>({{facetItem.count}})</span>
+					</div>
+				</label>
+
+				<label for="srchwtn" *ngIf="facet.facetName != 'cons_serv_reqd_ind_exact'">
+					<div class="sidebar-sublist_wrapper">
+						<span class="sidebar-sublist-item">{{facetItem.label}} &nbsp;</span>
+						<span>({{facetItem.count}})</span>
+					</div>
+				</label>
+			</div>
+		</li>		
+		<li class="expand-link" *ngIf="(facet.facetItems | length) > 6">
+			<a *ngIf="!(limitFacets | contains : i)" (click)="onSeeMore(i); false">{{seeMore}}</a>
+			<a *ngIf="(limitFacets | contains : i)" (click)="onSeeLess(i); false">{{seeLess}}</a>		
+		</li>
+	</ul>
+</ul>
+			

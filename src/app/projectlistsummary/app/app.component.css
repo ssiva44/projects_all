@@ -1,0 +1,14 @@
+.display-none{
+    display: none;
+  }
+  .arrow_size{
+     
+      font-size: 12px;
+    color: #0071BC;
+    margin-left: 5px;
+  }
+  .arrow_a{
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+  }
